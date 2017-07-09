@@ -7,31 +7,35 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label stacked>Username</ion-label>
-      <ion-input type="text" placeholder="Username" [(ngModel)]="userAcc.username"></ion-input>
-    </ion-item>
+  <form [formGroup]="user" (ngSubmit)="formSubmit(user)">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Username</ion-label>
+        <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Email</ion-label>
-      <ion-input type="email" placeholder="Email" [(ngModel)]="userAcc.email"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input type="password" placeholder="Password" [(ngModel)]="userAcc.password"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label stacked>Password</ion-label>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Preferred Date</ion-label>
-      <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MM DD YYYY" min="2017" max="2020-12-31" [(ngModel)]="userAcc.preferences.date"></ion-datetime>
-    </ion-item>
+      <div formGroupName="preferences">
+        <ion-item>
+          <ion-label stacked>Preferred Date</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MM DD YYYY" min="2017" max="2020-12-31" formControlName="date"></ion-datetime>
+        </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Notes</ion-label>
-      <ion-textarea [(ngModel)]="userAcc.preferences.notes"></ion-textarea>
-    </ion-item>
-  </ion-list>
-  <button ion-button full color="primary" (click)="submitForm()">Submit</button>
+        <ion-item>
+          <ion-label stacked>Notes</ion-label>
+          <ion-textarea formControlName="notes"></ion-textarea>
+        </ion-item>
+      </div>
+    </ion-list>
+    <button ion-button full color="primary" type="submit">Submit</button>
+  </form>
 </ion-content>
