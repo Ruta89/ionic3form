@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'page-home',
@@ -10,20 +10,17 @@ export class HomePage {
   userAcc = { preferences: {} };
   user: FormGroup;
 
-  constructor(public navCtrl: NavController) {
-    this.user = new FormGroup({
-      username: new FormControl('Arek'),
-      email: new FormControl('are@arek.pl'),
-      password: new FormControl('123456'),
-      preferences: new FormGroup({
-        date: new FormControl(),
-        notes: new FormControl('Moje notatki!')
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder) {
+
+    this.user = this.formBuilder.group({
+      username: ['Arek'],
+      email: ['are@arek.pl'],
+      password: ['123456'],
+      preferences: this.formBuilder.group({
+        date: [''],
+        notes: ['Moje notatki!']
       })
     });
-  }
-
-  submitForm() {
-    console.log(this.userAcc);
   }
 
   formSubmit({ value, valid }: { value: User, valid: boolean }) {
