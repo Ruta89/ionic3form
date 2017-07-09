@@ -6,9 +6,14 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  userAcc = { preferences: {} };
 
   constructor(public navCtrl: NavController) {
 
+  }
+
+  submitForm() {
+    console.log(this.userAcc);
   }
 
 }
