@@ -9,6 +9,7 @@ import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
 export class HomePage {
   userAcc = { preferences: {} };
   user: FormGroup;
+  changeLog: string[] = [];
 
   constructor(public navCtrl: NavController, private formBuilder: FormBuilder) {
 
@@ -24,6 +25,11 @@ export class HomePage {
         this.getInitialAddress()
       ])
     });
+
+    const nameControl = this.user.get('username')
+    nameControl.valueChanges.forEach(
+      (value: string) => this.changeLog.push(value)
+    );
   }
 
   getInitialAddress() {
