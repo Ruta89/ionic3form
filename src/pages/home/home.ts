@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
 
 @Component({
   selector: 'page-home',
@@ -19,8 +19,28 @@ export class HomePage {
       preferences: this.formBuilder.group({
         date: [''],
         notes: ['Moje notatki!']
-      })
+      }),
+      addresses: this.formBuilder.array([
+        this.getInitialAddress()
+      ])
     });
+  }
+
+  getInitialAddress() {
+    return this.formBuilder.group({
+      street: [''],
+      postcode: ['']
+    });
+  }
+
+  addAddress() {
+    const control = <FormArray>this.user.controls['addresses'];
+    control.push(this.getInitialAddress());
+  }
+
+  removeAddress(i: number) {
+    const control = <FormArray>this.user.controls['addresses'];
+    control.removeAt(i);
   }
 
   formSubmit({ value, valid }: { value: User, valid: boolean }) {
