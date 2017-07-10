@@ -1,3 +1,4 @@
+import { EmailValidator } from './../../validators/email';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from "@angular/forms";
@@ -15,7 +16,7 @@ export class HomePage {
 
     this.user = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['are@arek.pl'],
+      email: ['are@arek.pl', [EmailValidator.isValid]],
       password: ['123456', [Validators.required, Validators.maxLength(6)]],
       preferences: this.formBuilder.group({
         date: [''],

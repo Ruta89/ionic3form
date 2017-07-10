@@ -14,12 +14,15 @@
         <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
       </ion-item>
       <ion-item *ngIf="user.controls.username.invalid && user.controls.username.dirty" no-lines>
-<p>Please provide a valid username</p>
+        <p>Please provide a valid username</p>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Email</ion-label>
         <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="user.controls.email.invalid && user.controls.email.dirty" no-lines>
+        <p>Please provide a valid email</p>
       </ion-item>
 
       <ion-item>
