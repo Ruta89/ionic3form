@@ -14,7 +14,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, private formBuilder: FormBuilder) {
 
     this.user = this.formBuilder.group({
-      username: ['Arek', [Validators.required, Validators.minLength(2)]],
+      username: ['', [Validators.required, Validators.minLength(2)]],
       email: ['are@arek.pl'],
       password: ['123456', [Validators.required, Validators.maxLength(6)]],
       preferences: this.formBuilder.group({

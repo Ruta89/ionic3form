@@ -13,6 +13,9 @@
         <ion-label stacked>Username</ion-label>
         <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
       </ion-item>
+      <ion-item *ngIf="user.controls.username.invalid && user.controls.username.dirty" no-lines>
+<p>Please provide a valid username</p>
+      </ion-item>
 
       <ion-item>
         <ion-label stacked>Email</ion-label>
