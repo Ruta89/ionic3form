@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      Form
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="user" (ngSubmit)="formSubmit(user)">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Username</ion-label>
+        <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="user.controls.username.invalid && user.controls.username.dirty" no-lines>
+        <p>Please provide a valid username</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="user.controls.email.invalid && user.controls.email.dirty" no-lines>
+        <p>Please provide a valid email</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Password</ion-label>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <div formGroupName="preferences">
+        <ion-item>
+          <ion-label stacked>Preferred Date</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="MM DD YYYY" min="2017" max="2020-12-31" formControlName="date"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Notes</ion-label>
+          <ion-textarea formControlName="notes"></ion-textarea>
+        </ion-item>
+      </div>
+
+      <ion-list formArrayName="addresses" no-lines>
+        <div *ngFor="let address of user.controls.addresses.controls; let i=index">
+          <div [formGroupName]="i">
+            <ion-item>
+              <ion-label stacked>Address {{ i + 1 }}</ion-label>
+              <ion-input type="text" formControlName="street" placeholder="street"></ion-input>
+              <ion-input type="text" formControlName="postcode" placeholder="postcode"></ion-input>
+            </ion-item>
+            <button ion-button outline full (click)="removeAddress(i)" color="danger" type="button"><ion-icon name="trash"></ion-icon></button>
+          </div>
+        </div>
+      </ion-list>
+      <button ion-button outline full (click)="addAddress()" color="secondary" type="button"><ion-icon name="add"></ion-icon></button>
+
+    </ion-list>
+    <button ion-button full color="primary" type="submit" [disabled]="user.invalid">Submit</button>
+  </form>
+  <div *ngFor="let name of changeLog">
+    {{ name }}
+  </div>
+</ion-content>
