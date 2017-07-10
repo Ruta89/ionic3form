@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from "@angular/forms";
 
 @Component({
   selector: 'page-home',
@@ -14,9 +14,9 @@ export class HomePage {
   constructor(public navCtrl: NavController, private formBuilder: FormBuilder) {
 
     this.user = this.formBuilder.group({
-      username: ['Arek'],
+      username: ['Arek', [Validators.required, Validators.minLength(2)]],
       email: ['are@arek.pl'],
-      password: ['123456'],
+      password: ['123456', [Validators.required, Validators.maxLength(6)]],
       preferences: this.formBuilder.group({
         date: [''],
         notes: ['Moje notatki!']

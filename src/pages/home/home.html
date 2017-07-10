@@ -51,7 +51,7 @@
       <button ion-button outline full (click)="addAddress()" color="secondary" type="button"><ion-icon name="add"></ion-icon></button>
 
     </ion-list>
-    <button ion-button full color="primary" type="submit">Submit</button>
+    <button ion-button full color="primary" type="submit" [disabled]="user.invalid">Submit</button>
   </form>
   <div *ngFor="let name of changeLog">
     {{ name }}
